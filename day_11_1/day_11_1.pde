@@ -17,7 +17,7 @@ void draw(){
   //white background
   background(255);
   
-  //the rectangle
+  //the ellipse
   fill(random(255),random(255),random(255));
   stroke(0);
   rectMode(CENTER);
