@@ -17,7 +17,7 @@ class Drop {
   }
   void display() {
     fill(c);
-    stroke(0);
+    noStroke();
     for (int i = 2; i < r; i++) {
       ellipse(x, y + i * 4, i*2, i*2);
     }
