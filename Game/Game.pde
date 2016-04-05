@@ -36,5 +36,8 @@ void draw() {
     drops[i].move();
     drops[i].display();
     //if statment for intersection
+    if(catcher.intersect(drops[i])){
+      drops[i].caught();
+    }
   }
 }

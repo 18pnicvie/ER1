@@ -10,7 +10,7 @@ class Drop {
     y = -r*4;
     x = random(width);
     speed = random(1, 8);
-    c = color(20, 150, 78);
+    c = color(random(255), random(255), random(255));
   }
   void move() {
     y += speed;
@@ -28,5 +28,12 @@ class Drop {
     } else {
       return false;
     }
+  }
+  //Function for when drop is caught
+  void caught(){
+    //drop stops
+    speed = 0;
+    //move drops
+    y = -1000;
   }
 }
