@@ -4,6 +4,7 @@ class Drop {
   float speed; //speed of drop
   color c; //color
   float r; //radius
+  boolean finished = false; //tracks drops and the fall
 
   Drop() {
     r = 8;
@@ -30,10 +31,13 @@ class Drop {
     }
   }
   //Function for when drop is caught
-  void caught(){
-    //drop stops
-    speed = 0;
-    //move drops
-    y = -1000;
+  //void caught(){
+  //  //drop stops
+  //  speed = 0;
+  //  //move drops
+  //  y = -1000;
+  //}
+  void finished(){
+    finished= true;
   }
 }

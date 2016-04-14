@@ -3,41 +3,75 @@ Drop[] drops;
 Timer timer;
 int totalDrops = 0;
 
+boolean gameOver= false;
+
+int score = 0;
+int level = 1;
+int lives = 1;
+int levelCounter = 0;
+PFont f;
+
 void setup() {
   size(640, 360);
 
   catcher = new Catcher(32);
-  drops = new Drop[1000];
+  drops = new Drop[75];
   timer = new Timer(300);
   timer.start();
+  noCursor();
+  f = createFont("Arial", 12, true);
 }
 
 
 void draw() {
   background(255);
 
-  catcher.setLocation(mouseX, mouseY);
-  catcher.display();
+  if (gameOver) {
+  } else {
 
-  //check the Timer
-  if (timer.isFinished()) {
-    //init one drop
-    drops[totalDrops] = new Drop();
-    //increment drop below..
-    totalDrops++;
-    if (totalDrops >= drops.length) {
-      totalDrops = 0;
-      //if we hit the end of array, start over
+
+    catcher.setLocation(mouseX, mouseY);
+    catcher.display();
+
+    //check the Timer
+    if (timer.isFinished()) {
+      //increment drop below..
+      totalDrops++;
+      if (totalDrops < drops.length) {
+        drops[totalDrops] = new Drop();
+        totalDrops++;
+      }
+      timer.start();
     }
-    timer.start();
-  }
 
-  for (int i = 0; i < totalDrops; i++) {
-    drops[i].move();
-    drops[i].display();
-    //if statment for intersection
-    if(catcher.intersect(drops[i])){
-      drops[i].caught();
+    for (int i = 0; i < totalDrops; i++) {
+      if (!drops[i].finished) {
+        drops[i].move();
+        drops[i].display();
+
+        if (drops[i].reachedBottom()) {
+          levelCounter++;
+          drops[i].finished();
+          lives--;
+          if (lives <= 0) {
+            gameOver = true;
+          }
+        }
+
+        //if statment for intersection
+        if (catcher.intersect(drops[i])) {
+          drops[i].finished();
+          levelCounter++;
+          score++;
+        }
+      }
+    }
+    if (levelCounter >= drops.length) {
+      level++;
+      levelCounter= 0;
+      lives= lives + 1;
+      totalDrops = 0;
+      timer.setTime(constrain(300-level*25, 0, 300));
     }
   }
 }
