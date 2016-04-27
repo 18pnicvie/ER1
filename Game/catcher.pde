@@ -16,8 +16,16 @@ class Catcher {
   }
   void display() {
     stroke(0);
-    fill(col);
+    fill(102,178,255);
     ellipse(x, y, r*2, r*2);
+    fill(255);
+    ellipse(x-15,y-10,20,20);
+    ellipse(x+15,y-10,20,20);
+    fill(0);
+    ellipse(x-15,y-10,10,10);
+    ellipse(x+15,y-10,10,10);
+    
+    
   }
   //function for drop/catcher intersecton
   //true of false are the intersecting?

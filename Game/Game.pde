@@ -19,19 +19,19 @@ void setup() {
   timer = new Timer(300);
   timer.start();
   noCursor();
-  f = createFont("Arial", 12, true);
+  f = createFont("Impact", 12, true);
 }
 
 
 void draw() {
-  background(255);
+  background(0);
 
   if (gameOver) {
     textFont(f,48);
     fill(0);
     textAlign(CENTER);
     fill(255,0,0);
-    text("YOU SUCK!",width/2,height/2);
+    text("RIP, Game Over!",width/2,height/2);
   } else {
 
 
@@ -79,7 +79,7 @@ void draw() {
       timer.setTime(constrain(300-level*25, 0, 300));
     }
     textFont(f,14);
-    fill(0);
+    fill(255);
     text("Lives:"+ lives,10,20);
     rect(10,24,lives*10,10);
     text("level:" + level, 300,20);
